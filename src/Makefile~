@@ -1,0 +1,20 @@
+
+
+OBJS = tester.o tokenizer.o ui.c
+
+CFLAGS =-g -03
+
+all: tokenizer
+
+tokenizer: $(OBJS)
+	cc -o runall $(CFLAGS) $(OBJS)
+$(OBJS): ui.c
+
+clean:
+	rm -f *.o runall
+run:tokenizer
+	./tokenizer
+
+
+
+

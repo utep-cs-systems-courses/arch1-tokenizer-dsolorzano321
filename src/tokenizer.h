@@ -11,11 +11,12 @@ int space_char(char c);
    character (not tab or space).  
    Zero terminators are not printable (therefore false) */ 
 int non_space_char(char c);
+ 
 
 /* Returns a pointer to the first character of the next 
    space-separated word in zero-terminated str.  Return a zero pointer if 
    str does not contain any words. */
-char word_start(char *str); 
+char *word_start(char *str); 
 
 /* Returns a pointer terminator char following *word */
 char *word_terminator(char *word);
