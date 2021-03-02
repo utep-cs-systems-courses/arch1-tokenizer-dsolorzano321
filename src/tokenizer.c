@@ -27,7 +27,7 @@ int non_space_char(char c){
    str does not contain any words. */
 char *word_start(char *str){
   while(*str){
-    if(non_space_char(*str)){
+    if(space_char(*str)){
 	return str;
     }
     str;
@@ -37,7 +37,7 @@ char *word_start(char *str){
 /* Returns a pointer terminator char following *word */
 char *word_terminator(char *word){
   while(*word){
-    if(space_char(*word)){
+    if(non_space_char(*word)){
       return word;
     }
     word++;
@@ -83,20 +83,30 @@ char *copy_str(char *inStr, short len){
 */
 char **tokenize(char* str){
   char *newptr = str;// points to string to not modify orignal
-  // int length = count_words(str);// ount the words in the string
+  int length = count_words(str);// ount the words in the string
   char **tokens = malloc(sizeof(char) * ((count_words(str))+1));
   int i;
-  for(i = 0; i <(count_words(str)); i++){
+  for(i = 0; i < length; i++){
     newptr = word_start(newptr);
-    int len_of_word = word_start(str) - word_terminator(str);
+    int len_of_word = word_terminator(str) - word_start(str);
     tokens[i] = copy_str(newptr,len_of_word);
     newptr = word_terminator(newptr);
   }
-  tokens[i] = 0;
+  tokens[length] = 0;
   return tokens;
 }
 
+void print_tokens(char **tokens){
+ 
+  while(*tokens != 0){
+    printf("tokens %s\n", *tokens);
+    tokens++;
+  }
+}
 
+void free_tokens(char **tokens){
+  free(tokens);
+}
 
 
 

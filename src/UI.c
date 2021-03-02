@@ -5,13 +5,17 @@
 
 int main(){
   
-  /* 
+  printf("$ ");
+  char user_input[100];
+  fgets(user_input, 100, stdin);
+  puts(user_input);
+  // printf("%s\n", user_input);
   char **tokens = tokenize(user_input);
   print_tokens(tokens);
-  */
-
-
   
+
+
+  /*
   char str[] = " hello";
   char *ptr = word_start(str);
   printf("pointer for word start to first space\n");
@@ -19,7 +23,7 @@ int main(){
   printf("&str[2] ");
   printf("%p", &str[2]);
 
-
+  
   printf("%s","\n--------Testing for word_terminator-------\n");
   char str2[] = "hello";
   char *ptrt = word_terminator(str2);
@@ -40,7 +44,7 @@ int main(){
   printf("testing for copy string--------\n");
   char copy[] =  "this is test string";
   printf("\ncopy string adress:  %s\n", copy_str( copy, sizeof(copy)));
-  
+  */
   
 
 
