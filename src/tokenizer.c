@@ -61,27 +61,40 @@ int count_words(char *str){
 /* Returns a fresly allocated new zero-terminated string 
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
-  char *copiedstr = malloc(sizeof(char)* (len+1));
+  char *newstr = malloc(sizeof(char)* (len+1));
 
   int i;
   for(i = 0; i < len; i++){
-    copiedstr[i] = inStr[i];
+    newstr[i] = inStr[i];
   }
 
-  copiedstr[i] = '0';
-  return copiedstr;			   
+  newstr[i] = '\0';
+  return newstr;			   
  
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 
    space-separated tokens from zero-terminated str.
    For example, tokenize("hello world string") would result in:
-     tokens[0] = "hello"
+     tokens[0] = "hello" //tokens[0] = newstr
      tokens[1] = "world"
      tokens[2] = "string" 
      tokens[3] = 0
 */
-char **tokenize(char* str);
+char **tokenize(char* str){
+  char *newptr = str;// points to string to not modify orignal
+  // int length = count_words(str);// ount the words in the string
+  char **tokens = malloc(sizeof(char) * ((count_words(str))+1));
+  int i;
+  for(i = 0; i <(count_words(str)); i++){
+    newptr = word_start(newptr);
+    int len_of_word = word_start(str) - word_terminator(str);
+    tokens[i] = copy_str(newptr,len_of_word);
+    newptr = word_terminator(newptr);
+  }
+  tokens[i] = 0;
+  return tokens;
+}
 
 
 
