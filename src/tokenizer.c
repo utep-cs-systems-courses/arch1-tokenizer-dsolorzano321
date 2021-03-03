@@ -6,7 +6,7 @@
    ('\t' or ' '). 
    Zero terminators are not printable (therefore false) */
 int space_char(char c){
-  if((c == '\t' || c == ' ')&& c != 0){
+  if((c == '\t' || c == ' ')&& c != '\0'){
     return 1;
   }
   return 0;
@@ -16,7 +16,7 @@ int space_char(char c){
    character (not tab or space).  
    Zero terminators are not printable (therefore false) */ 
 int non_space_char(char c){
-  if((c != '\t' || c != ' ')&& c != 0){
+  if((c != '\t' || c != ' ')&& c != '\0'){
     return 1;
   }
   return 0;
@@ -26,22 +26,18 @@ int non_space_char(char c){
    space-separated word in zero-terminated str.  Return a zero pointer("\0") if 
    str does not contain any words. */
 char *word_start(char *str){
-  while(*str){
-    if(space_char(*str)){
-	return str;
-    }
-    str;
+  while(space_char(*str)){
+    str++;
   }
+  return str;
 }
 //str[2]
 /* Returns a pointer terminator char following *word */
 char *word_terminator(char *word){
-  while(*word){
-    if(non_space_char(*word)){
-      return word;
-    }
+  while(non_space_char(*word)){
     word++;
   }
+   
   return word;
   
 }
@@ -68,7 +64,7 @@ char *copy_str(char *inStr, short len){
     newstr[i] = inStr[i];
   }
 
-  newstr[i] = '\0';
+  newstr[len] = '\0';
   return newstr;			   
  
 }
@@ -82,15 +78,15 @@ char *copy_str(char *inStr, short len){
      tokens[3] = 0
 */
 char **tokenize(char* str){
-  char *newptr = str;// points to string to not modify orignal
+  // char *newptr = str;// points to string to not modify orignal
   int length = count_words(str);// ount the words in the string
   char **tokens = malloc(sizeof(char) * ((count_words(str))+1));
   int i;
   for(i = 0; i < length; i++){
-    newptr = word_start(newptr);
+    str = word_start(str);
     int len_of_word = word_terminator(str) - word_start(str);
-    tokens[i] = copy_str(newptr,len_of_word);
-    newptr = word_terminator(newptr);
+    tokens[i] = copy_str(str,len_of_word);
+    str = word_terminator(str);
   }
   tokens[length] = 0;
   return tokens;
@@ -98,10 +94,11 @@ char **tokenize(char* str){
 
 void print_tokens(char **tokens){
  
-  while(*tokens != 0){
+  while(*tokens){
     printf("tokens %s\n", *tokens);
     tokens++;
   }
+  
 }
 
 void free_tokens(char **tokens){
