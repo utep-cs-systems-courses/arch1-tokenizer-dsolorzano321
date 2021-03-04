@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "tokenizer.h"
 
+
 /* Return true (non-zero) if c is a whitespace characer
    ('\t' or ' '). 
    Zero terminators are not printable (therefore false) */

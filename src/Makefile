@@ -1,6 +1,6 @@
 
 
-OBJS = tokenizer.o UI.o 
+OBJS = tokenizer.o UI.o history.o 
 CFLAGS =-g -O3 
 
 all: tokenizer

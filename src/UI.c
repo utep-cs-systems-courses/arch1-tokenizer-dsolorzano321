@@ -4,7 +4,18 @@
 #include "history.h"
 
 int main(){
+
+  List *newList = init_history();
+  add_history(newList, "add");
+  add_history(newList, "this");
+  add_history(newList, "string");
   
+  print_history(newList);
+  printf("get history: %s\n", get_history(newList, 4));
+  free_history(newList);
+  print_history(newList);
+  
+  /*
   printf("$ ");
   char user_input[100];
   fgets(user_input, 100, stdin);
@@ -12,7 +23,7 @@ int main(){
   // printf("%s\n", user_input);
   char **tokens = tokenize(user_input);
   print_tokens(tokens);
-  
+  */
 
 
   /*
