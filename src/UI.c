@@ -4,7 +4,7 @@
 #include "history.h"
 
 int main(){
-
+  /*
   List *newList = init_history();
   add_history(newList, "add");
   add_history(newList, "this");
@@ -14,6 +14,37 @@ int main(){
   printf("get history: %s\n", get_history(newList, 4));
   free_history(newList);
   print_history(newList);
+  */
+  
+  List *list = init_history();
+  char user_in[100];
+  while(user_in[0] != 3){
+   
+    printf("select a menu option: \n");
+    printf("1: tokenize string\n");
+    printf("2: print history\n");
+    printf("3: exit\n");
+    scanf("%d", &user_in);
+    if(user_in[0] == 1){
+      
+      
+      printf("enter string: ");
+      char str[100];
+      scanf(" %[^\n]",&str);
+      char **tokens = tokenize(str);
+      add_history(list, str);
+      print_tokens(tokens);
+    }
+    if(user_in[0] == 2){
+      print_history(list);
+    }
+    if(user_in[0] == 3){
+      exit(0);
+    }
+    
+
+  }
+  
   
   /*
   printf("$ ");
@@ -24,8 +55,6 @@ int main(){
   char **tokens = tokenize(user_input);
   print_tokens(tokens);
   */
-
-
   /*
   char str[] = " hello";
   char *ptr = word_start(str);
